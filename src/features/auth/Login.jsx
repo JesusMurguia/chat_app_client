@@ -1,6 +1,6 @@
 import React from "react";
-import JoinRoom from "./JoinRoom";
-import CreateRoom from "./CreateRoom";
+import JoinRoom from "../chatroom/JoinRoom";
+import CreateRoom from "../chatroom/CreateRoom";
 
 const Login = () => {
   return (

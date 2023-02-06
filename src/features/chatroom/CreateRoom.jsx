@@ -2,8 +2,8 @@ import { nanoid } from "@reduxjs/toolkit";
 import { React, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setCredentials } from "./authSlice";
-import { useLoginMutation } from "./authApiSlice";
+import { setCredentials } from "../auth/authSlice";
+import { useLoginMutation } from "../auth/authApiSlice";
 
 function CreateRoom() {
   const userRef = useRef();
@@ -20,7 +20,6 @@ function CreateRoom() {
       const room = nanoid();
       const user = userRef.current.value;
       const password = passwordRef.current.value;
-      console.log(user, password);
 
       const userData = await login({ user, password, room }).unwrap();
       dispatch(setCredentials({ ...userData, user }));

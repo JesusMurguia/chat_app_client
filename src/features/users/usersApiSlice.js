@@ -4,6 +4,7 @@ export const usersApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getUsers: builder.query({
       query: (room) => `/api/chat/room/users/${room}`,
+      providesTags: ["User"],
     }),
   }),
 });
