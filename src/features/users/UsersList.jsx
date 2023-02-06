@@ -1,9 +1,10 @@
-import { selectCurrentRoom } from "../auth/authSlice";
+import { selectCurrentRoom, selectCurrentUser } from "../auth/authSlice";
 import { useGetUsersQuery } from "./usersApiSlice";
 import { useSelector } from "react-redux";
 
 const UsersList = () => {
   const room = useSelector(selectCurrentRoom);
+  const currentUser = useSelector(selectCurrentUser);
   const {
     data: users,
     isLoading,
@@ -22,7 +23,12 @@ const UsersList = () => {
         <h1>Users List</h1>
         <ul>
           {users.map((user, i) => {
-            return <li key={user.id}>{user.username}</li>;
+            if (user.username != currentUser)
+              return (
+                <li key={user.id}>
+                  {user.username} {user.status}
+                </li>
+              );
           })}
         </ul>
       </section>

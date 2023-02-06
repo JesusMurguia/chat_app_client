@@ -15,10 +15,13 @@ const authSlice = createSlice({
       state.room = null;
       state.user = null;
     },
+    updateStatus: (state, action) => {
+      state.user.status = action.payload.status;
+    },
   },
 });
 
-export const { setCredentials, logOut } = authSlice.actions;
+export const { setCredentials, logOut, updateStatus } = authSlice.actions;
 
 export default authSlice.reducer;
 

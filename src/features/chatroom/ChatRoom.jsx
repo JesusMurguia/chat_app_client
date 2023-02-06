@@ -16,6 +16,7 @@ import {
   submitMessage,
   selectIsConnected,
 } from "../chatroom/chatSlice";
+import StatusSwitcher from "./StatusSwitcher";
 
 const ChatRoom = () => {
   const user = useSelector(selectCurrentUser);
@@ -31,10 +32,11 @@ const ChatRoom = () => {
     }
   }, []);
 
-  const welcome = user ? `Welcome ${user}!` : "Welcome!";
+  const welcome = user ? `Welcome ${user.username}!` : "Welcome!";
   const content = (
     <header>
       <h1>{welcome}</h1>
+      <StatusSwitcher />
       <p>Room: {room}</p>
       <UsersList />
     </header>

@@ -21,7 +21,7 @@ function JoinRoom() {
       const user = userRef.current.value;
       const password = passwordRef.current.value;
       const userData = await login({ user, password, room }).unwrap();
-      dispatch(setCredentials({ ...userData, user }));
+      dispatch(setCredentials({ ...userData }));
       e.target.reset();
       navigate("/room");
     } catch (error) {
