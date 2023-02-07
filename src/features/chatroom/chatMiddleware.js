@@ -14,7 +14,7 @@ const chatMiddleware = (store) => {
   let stompClient;
 
   return (next) => (action) => {
-    const isConnectionEstablished = socket && store.getState().chat.isConnected;
+    const isConnectionEstablished = store.getState().chat.isConnected;
     if (startConnecting.match(action) && !isConnectionEstablished) {
       const connect = () => {
         let sockJS = new SockJS("http://localhost:8080/ws");
