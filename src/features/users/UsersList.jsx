@@ -23,7 +23,7 @@ const UsersList = () => {
         <h1>Users List</h1>
         <ul>
           {users.map((user, i) => {
-            if (user.username != currentUser)
+            if (user.username != currentUser.username)
               return (
                 <li key={user.id}>
                   {user.username} {user.status}
