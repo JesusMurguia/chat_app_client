@@ -1,6 +1,7 @@
 import { selectCurrentRoom, selectCurrentUser } from "../auth/authSlice";
 import { useGetUsersQuery } from "./usersApiSlice";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const UsersList = () => {
   const room = useSelector(selectCurrentRoom);
@@ -15,6 +16,7 @@ const UsersList = () => {
 
   let content;
 
+  const navigate = useNavigate();
   if (isLoading) {
     content = <p>Loading...</p>;
   } else if (isSuccess) {
@@ -25,7 +27,10 @@ const UsersList = () => {
           {users.map((user, i) => {
             if (user.username != currentUser.username)
               return (
-                <li key={user.id}>
+                <li
+                  key={user.id}
+                  onClick={() => navigate("user/" + user.username)}
+                >
                   {user.username} {user.status}
                 </li>
               );
