@@ -24,7 +24,7 @@ function CreateRoom() {
       const userData = await login({ user, password, room }).unwrap();
       dispatch(setCredentials({ ...userData }));
       e.target.reset();
-      navigate("/room/" + room);
+      navigate("/room/" + userData.room);
     } catch (error) {
       console.log(error);
     }
