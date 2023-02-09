@@ -1,12 +1,17 @@
 import React, { useRef } from "react";
 import MessageList from "./MessageList";
+import { selectActiveContact, submitMessage } from "../chatroom/chatSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { nanoid } from "@reduxjs/toolkit";
+import { selectCurrentRoom, selectCurrentUser } from "../auth/authSlice";
 
 function Conversation() {
   const messageRef = useRef();
+  const activeContact = useSelector(selectActiveContact);
+  const user = useSelector(selectCurrentUser);
+  const room = useSelector(selectCurrentRoom);
+  const dispatch = useDispatch();
 
-  const handleSendMessage = () => {
-    console.log(`message is: ${messageRef.current.value}`);
-  };
   return (
     <div>
       <MessageList />
@@ -16,7 +21,22 @@ function Conversation() {
           type="text"
           placeholder="write message.."
         ></input>
-        <button onClick={handleSendMessage}>Send</button>
+        <button
+          onClick={() => {
+            const message = {
+              id: nanoid(),
+              sender: user.username,
+              content: messageRef.current.value,
+              receiver: activeContact,
+              room,
+              status: "DELIVERED",
+            };
+            messageRef.current.value = "";
+            dispatch(submitMessage(message));
+          }}
+        >
+          Send
+        </button>
       </div>
     </div>
   );

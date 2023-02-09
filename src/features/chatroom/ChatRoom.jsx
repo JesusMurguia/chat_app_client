@@ -8,8 +8,13 @@ import {
 import React, { useEffect } from "react";
 import UsersList from "../users/UsersList";
 import { Outlet } from "react-router-dom";
-import { startConnecting, selectIsConnected } from "../chatroom/chatSlice";
+import {
+  startConnecting,
+  selectIsConnected,
+  endConnection,
+} from "../chatroom/chatSlice";
 import StatusSwitcher from "./StatusSwitcher";
+import ConversationsList from "../conversation/ConversationsList";
 
 const ChatRoom = () => {
   const user = useSelector(selectCurrentUser);
@@ -22,6 +27,10 @@ const ChatRoom = () => {
     if (!isConnected) {
       dispatch(startConnecting());
     }
+
+    return () => {
+      dispatch(endConnection());
+    };
   }, []);
 
   const welcome = user ? `Welcome ${user.username}!` : "Welcome!";
@@ -32,6 +41,7 @@ const ChatRoom = () => {
         <StatusSwitcher />
         <p>Room: {room}</p>
         <UsersList />
+        <ConversationsList />
       </header>
       <Outlet />
     </>

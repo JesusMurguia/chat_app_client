@@ -3,6 +3,7 @@ const initialState = {
   messages: [],
   isEstablishingConnection: false,
   isConnected: false,
+  activeContact: null,
 };
 
 const chatSlice = createSlice({
@@ -25,6 +26,16 @@ const chatSlice = createSlice({
     submitMessage: (state, action) => {
       return;
     },
+    updateActiveContact: (state, action) => {
+      state.activeContact = action.payload;
+    },
+    endConnection: (state, action) => {
+      state.isConnected = false;
+      state.isEstablishingConnection = false;
+    },
+    setReadMessages: (state, action) => {
+      return;
+    },
   },
 });
 
@@ -34,7 +45,11 @@ export const {
   receiveAllMessages,
   receiveMessage,
   submitMessage,
+  updateActiveContact,
+  endConnection,
+  setReadMessages,
 } = chatSlice.actions;
 
 export default chatSlice.reducer;
 export const selectIsConnected = (state) => state.chat.isConnected;
+export const selectActiveContact = (state) => state.chat.activeContact;

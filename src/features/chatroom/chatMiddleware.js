@@ -4,13 +4,14 @@ import {
   receiveAllMessages,
   receiveMessage,
   submitMessage,
+  endConnection,
+  setReadMessages,
 } from "./chatSlice";
 import { updateStatus } from "../auth/authSlice";
 import * as SockJS from "sockjs-client";
 import * as Stomp from "stompjs";
 
 const chatMiddleware = (store) => {
-  let socket;
   let stompClient;
 
   return (next) => (action) => {
@@ -31,37 +32,59 @@ const chatMiddleware = (store) => {
 
       const onConnected = () => {
         store.dispatch(connectionEstablished());
+        if (stompClient?.connected) {
+          //get message notifications
+          stompClient.subscribe(
+            `/user/${store.getState().auth.user.username}/messages/${
+              store.getState().auth.room
+            }`,
+            onMessageReceived
+          );
 
-        //get message notifications
-        stompClient.subscribe(
-          "/user/" + store.getState().auth.user + "/queue/messages",
-          onMessageReceived
-        );
+          stompClient.subscribe(
+            `/user/${store.getState().auth.user.username}/read_messages/${
+              store.getState().auth.room
+            }`,
+            () => {
+              store.dispatch({
+                type: `api/invalidateTags`,
+                payload: ["Conversation"],
+              });
+            }
+          );
 
-        //get updates on users joining/changing status
-        stompClient.subscribe(
-          "/get_user_updates/" + store.getState().auth.room,
-          onUserUpdate
-        );
+          //get updates on users joining/changing status
+          stompClient.subscribe(
+            "/get_user_updates/" + store.getState().auth.room,
+            onUserUpdate
+          );
 
-        stompClient.send(
-          `/app/user_update/${store.getState().auth.room}`,
-          {},
-          JSON.stringify({
-            idroom: store.getState().auth.room,
-            username: store.getState().auth.user.username,
-            status: "ONLINE",
-          })
-        );
+          stompClient.send(
+            `/app/user_update/${store.getState().auth.room}`,
+            {},
+            JSON.stringify({
+              idroom: store.getState().auth.room,
+              username: store.getState().auth.user.username,
+              status: "ONLINE",
+            })
+          );
+        }
       };
 
       const onError = (err) => {
         console.log(err);
-        alert(err);
       };
 
+      connect();
+
       const onMessageReceived = (data) => {
-        console.log(data);
+        store.dispatch({
+          type: `api/invalidateTags`,
+          payload:
+            data.sender === store.getState().auth.user.username
+              ? ["Message"]
+              : ["Conversation", "Message"],
+        });
       };
 
       const onUserUpdate = (data) => {
@@ -73,11 +96,25 @@ const chatMiddleware = (store) => {
             payload: ["User"],
           });
       };
-      connect();
+    }
+
+    if (setReadMessages.match(action) && stompClient?.connected) {
+      stompClient.send(
+        "/app/read_messages/" +
+          store.getState().auth.user.username +
+          "/" +
+          store.getState().auth.room,
+        {},
+        JSON.stringify(action.payload)
+      );
+    }
+
+    if (endConnection.match(action) && stompClient?.connected) {
+      stompClient?.disconnect(() => console.log("disconnecting.."), {});
     }
 
     if (submitMessage.match(action) && isConnectionEstablished) {
-      socket.emit("send_message", action.payload.content);
+      stompClient.send("/app/message", {}, JSON.stringify(action.payload));
     }
     if (updateStatus.match(action)) {
       stompClient.send(

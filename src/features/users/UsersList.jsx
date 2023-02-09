@@ -1,11 +1,13 @@
 import { selectCurrentRoom, selectCurrentUser } from "../auth/authSlice";
+import { updateActiveContact } from "../chatroom/chatSlice";
 import { useGetUsersQuery } from "./usersApiSlice";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const UsersList = () => {
   const room = useSelector(selectCurrentRoom);
   const currentUser = useSelector(selectCurrentUser);
+  const dispatch = useDispatch();
   const {
     data: users,
     isLoading,
@@ -29,7 +31,10 @@ const UsersList = () => {
               return (
                 <li
                   key={user.id}
-                  onClick={() => navigate("user/" + user.username)}
+                  onClick={() => {
+                    dispatch(updateActiveContact(user.username));
+                    navigate("user/" + user.username);
+                  }}
                 >
                   {user.username} {user.status}
                 </li>
