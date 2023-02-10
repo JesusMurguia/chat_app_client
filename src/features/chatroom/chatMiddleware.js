@@ -90,11 +90,16 @@ const chatMiddleware = (store) => {
       const onUserUpdate = (data) => {
         let response = JSON.parse(data.body);
         //invalidates the User tag to refetch the userlist
-        if (response.username !== store.getState().auth.user)
+
+        if (response.username !== store.getState().auth.user.username) {
           store.dispatch({
             type: `api/invalidateTags`,
             payload: ["User"],
           });
+        } else if (response.status === "OFFLINE") {
+          stompClient?.disconnect(() => console.log("disconnecting.."), {});
+          store.dispatch(endConnection());
+        }
       };
     }
 

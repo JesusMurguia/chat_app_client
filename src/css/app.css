@@ -247,4 +247,6 @@ input:focus {
 .status-item.selected {
   background-color: var(--accent-color-1);
   color: var(--bg-color-3);
+  cursor: default;
+  pointer-events: none;
 }
