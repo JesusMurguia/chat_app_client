@@ -9,6 +9,7 @@ import {
 } from "../chatroom/chatSlice";
 
 import { UserInfo } from "../../components/UserInfo";
+import Users from "../../components/Users";
 
 const ChatRoom = () => {
   const user = useSelector(selectCurrentUser);
@@ -31,16 +32,7 @@ const ChatRoom = () => {
   const content = (
     <section id="chatroom">
       <UserInfo />
-      <div className="users">
-        <div className="search-bar">
-          <label>
-            search
-            <input />
-          </label>
-        </div>
-        <div className="users-list">users list</div>
-      </div>
-      <div className="messages-list">messages</div>
+      <Users />
       <div className="conversation">
         <div className="active-contact">contact user</div>
         <div className="messages">messages</div>
@@ -57,13 +49,3 @@ const ChatRoom = () => {
 };
 
 export default ChatRoom;
-{
-  /* <header>
-        <h1>{welcome}</h1>
-        <StatusSwitcher />
-        <p>Room: {room}</p>
-        <UsersList />
-        <ConversationsList />
-      </header>
-      <Outlet /> */
-}
