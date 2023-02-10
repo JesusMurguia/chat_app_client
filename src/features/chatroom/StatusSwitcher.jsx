@@ -1,27 +1,28 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentUser, updateStatus } from "../auth/authSlice";
 
-function StatusSwitcher() {
+function StatusSwitcher({ setVisible }) {
   const { status } = useSelector(selectCurrentUser);
   const dispatch = useDispatch();
-  const handleStatusChange = (e) => {
-    dispatch(updateStatus({ status: e.target.value }));
+  const data = ["ONLINE", "OFFLINE", "AWAY"];
+  const handleStatusChange = (item) => {
+    setVisible(false);
+    dispatch(updateStatus({ status: item }));
   };
 
   return (
-    <div>
-      <label htmlFor="status-selector">Status:</label>
-      <select
-        id="status-selector"
-        name="status-selector"
-        onChange={handleStatusChange}
-        value={status}
-      >
-        <option value="ONLINE">ONLINE</option>
-        <option value="OFFLINE">OFFLINE</option>
-        <option value="AWAY">AWAY</option>
-      </select>
+    <div className="status-switcher">
+      {data.map((item) => {
+        return (
+          <div
+            className={`status-item ${status === item ? "selected" : ""}`}
+            onClick={() => handleStatusChange(item)}
+          >
+            {item}
+          </div>
+        );
+      })}
     </div>
   );
 }

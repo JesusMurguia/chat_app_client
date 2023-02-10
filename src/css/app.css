@@ -4,9 +4,10 @@
   --bg-color-3: #171b1d;
   --bg-color-4: #252b2e;
   --bg-color-5: #424546;
+  --bg-color-6: #090e0e;
   --color-1: #d2d3d3;
   --color-2: #959595;
-
+  --accent-color-1: #48a5c3;
   font-family: sans-serif;
   font-size: 17px;
 }
@@ -50,6 +51,7 @@ form {
   grid-column: 1 / 2;
   display: grid;
   align-self: center;
+  position: relative;
 }
 
 .users {
@@ -110,6 +112,10 @@ form {
   text-transform: lowercase;
 }
 
+.status-switcher-wrapper {
+  position: relative;
+}
+
 /* SEARCH BAR */
 .search-bar > input {
   background-color: var(--bg-color-4);
@@ -162,7 +168,7 @@ input:focus {
   top: 50%;
   transform: translateY(-50%);
   right: 3%;
-  background-color: #48a5c2;
+  background-color: var(--accent-color-1);
   color: #424546;
   font-size: 0.8rem;
   width: 1rem;
@@ -204,7 +210,7 @@ input:focus {
 }
 
 .ONLINE > .user-icon-wrapper::after {
-  background-color: #48a5c3;
+  background-color: var(--accent-color-1);
 }
 
 .OFFLINE > .user-icon-wrapper::after {
@@ -213,4 +219,32 @@ input:focus {
 
 .AWAY > .user-icon-wrapper::after {
   background-color: #cebc4a;
+}
+
+/* STATUS SWITCHER COMPONENT */
+.status-switcher {
+  position: absolute;
+  left: 71%;
+  top: 0%;
+  background-color: var(--bg-color-4);
+  padding-block: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 10px 8px 0px;
+  z-index: 2;
+  border-radius: 0.35rem;
+}
+
+.status-item {
+  font-size: 0.85rem;
+  padding-inline: 1rem;
+  text-align: end;
+  cursor: pointer;
+}
+
+.status-item:hover {
+  background-color: var(--bg-color-5);
+  color: var(--bg-color-1);
+}
+.status-item.selected {
+  background-color: var(--accent-color-1);
+  color: var(--bg-color-3);
 }
