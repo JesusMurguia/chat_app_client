@@ -224,10 +224,10 @@ input:focus {
 /* STATUS SWITCHER COMPONENT */
 .status-switcher {
   position: absolute;
-  left: 71%;
+  left: 72%;
   top: 0%;
   background-color: var(--bg-color-4);
-  padding-block: 1rem;
+  padding-block: 0.5rem;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 10px 8px 0px;
   z-index: 2;
   border-radius: 0.35rem;

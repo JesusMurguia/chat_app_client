@@ -3,14 +3,15 @@ import { selectCurrentUser } from "../features/auth/authSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisV, faUser } from "@fortawesome/free-solid-svg-icons";
 import StatusSwitcher from "../features/chatroom/StatusSwitcher";
-import { useState } from "react";
+import useComponentVisible from "./useComponentVisible";
 
 export const UserInfo = () => {
   const user = useSelector(selectCurrentUser);
-  const [visible, setVisible] = useState(false);
+  const { ref, isComponentVisible, setIsComponentVisible } =
+    useComponentVisible(true);
 
   const handleStatusSwitcher = () => {
-    setVisible(!visible);
+    setIsComponentVisible(true);
   };
 
   return (
@@ -26,7 +27,14 @@ export const UserInfo = () => {
       <button className="user-info-button" onClick={handleStatusSwitcher}>
         <FontAwesomeIcon icon={faEllipsisV} className="user-info-button-icon" />
       </button>
-      {visible ? <StatusSwitcher setVisible={setVisible} /> : <></>}
+      {isComponentVisible ? (
+        <StatusSwitcher
+          switcherRef={ref}
+          setVisible={() => setIsComponentVisible(false)}
+        />
+      ) : (
+        <></>
+      )}
     </div>
   );
 };

@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentUser, updateStatus } from "../auth/authSlice";
 import { startConnecting } from "./chatSlice";
 
-function StatusSwitcher({ setVisible }) {
+function StatusSwitcher({ setVisible, switcherRef }) {
   const { status } = useSelector(selectCurrentUser);
   const dispatch = useDispatch();
   const data = ["ONLINE", "OFFLINE", "AWAY"];
@@ -16,7 +16,7 @@ function StatusSwitcher({ setVisible }) {
   };
 
   return (
-    <div className="status-switcher">
+    <div className="status-switcher" ref={switcherRef}>
       {data.map((item) => {
         return (
           <div
