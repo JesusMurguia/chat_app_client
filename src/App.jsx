@@ -1,11 +1,16 @@
 import { Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
-import Login from "./features/auth/Login";
 import RequireAuth from "./features/auth/RequireAuth";
 import ChatRoom from "./features/chatroom/ChatRoom";
 import { selectCurrentRoom } from "./features/auth/authSlice";
 import { useSelector } from "react-redux";
 import Conversation from "./features/chatroom/Conversation";
+import JoinRoom from "./features/chatroom/JoinRoom";
+import CreateRoom from "./features/chatroom/CreateRoom";
+import Welcome from "./components/Welcome";
+import "./css/app.css";
+import "./css/reset.css";
+import { Register } from "./features/auth/Register";
 
 function App() {
   const room = useSelector(selectCurrentRoom);
@@ -13,7 +18,10 @@ function App() {
     <Routes>
       <Route Path="/" element={<Layout />}>
         {/* Public */}
-        <Route index element={<Login />} />
+        <Route index element={<Welcome />} />
+        <Route path="create-room" element={<CreateRoom />} />
+        <Route path="join-room" element={<JoinRoom />} />
+        <Route path="register" element={<Register />} />
 
         {/* Protected */}
         <Route element={<RequireAuth />}>

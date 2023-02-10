@@ -1,6 +1,6 @@
 import { nanoid } from "@reduxjs/toolkit";
 import { React, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setCredentials } from "../auth/authSlice";
 import { useLoginMutation } from "../auth/authApiSlice";
@@ -31,7 +31,7 @@ function CreateRoom() {
   };
 
   return (
-    <section>
+    <section id="create-room">
       <h1>Create new chat</h1>
       <form onSubmit={handleSubmit} ref={formRef}>
         <label htmlFor="username">Username:</label>
@@ -45,7 +45,8 @@ function CreateRoom() {
 
         <label htmlFor="password">Password:</label>
         <input type="password" id="password" ref={passwordRef} required />
-        <button>Sign In</button>
+        <button type="submit">Sign In</button>
+        <Link to="/register">Create an account</Link>
       </form>
     </section>
   );

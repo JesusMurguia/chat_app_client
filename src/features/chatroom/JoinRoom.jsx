@@ -1,5 +1,5 @@
-import { React, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { React, useEffect, useRef } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setCredentials } from "../auth/authSlice";
 import { useLoginMutation } from "../auth/authApiSlice";
@@ -29,8 +29,18 @@ function JoinRoom() {
     }
   };
 
+  useEffect(() => {
+    let cookieValue = document.cookie.replace(
+      /(?:(?:^|.*;\s*)idroom\s*\=\s*([^;]*).*$)|^.*$/,
+      "$1"
+    );
+    if (cookieValue) {
+      chatIdRef.current.value = cookieValue;
+    }
+  }, []);
+
   return (
-    <section>
+    <section id="join-room">
       <h1>Join existing chat</h1>
       <form onSubmit={handleSubmit} ref={formRef}>
         <label htmlFor="chat-id">Chat ID:</label>
@@ -53,7 +63,8 @@ function JoinRoom() {
 
         <label htmlFor="password1">Password:</label>
         <input type="password" id="password1" ref={passwordRef} required />
-        <button>Sign In</button>
+        <button type="submit">Sign In</button>
+        <Link to="/">Create an account</Link>
       </form>
     </section>
   );
