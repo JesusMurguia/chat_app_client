@@ -23,14 +23,14 @@ export const Register = () => {
       });
     } catch (error) {
       Swal.fire("Error!", "User already exists.", "error").then(() => {
-        navigate("/");
+        e.target.reset();
       });
     }
   };
   return (
-    <section id="register">
-      <h1>Create a new account</h1>
+    <section id="register" className="user-form">
       <form onSubmit={handleSubmit} ref={formRef}>
+        <h1>Create a new account</h1>
         <label htmlFor="username2">Username:</label>
         <input
           type="text"

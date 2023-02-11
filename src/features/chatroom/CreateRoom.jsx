@@ -31,9 +31,9 @@ function CreateRoom() {
   };
 
   return (
-    <section id="create-room">
-      <h1>Create new chat</h1>
+    <section id="create-room" className="user-form">
       <form onSubmit={handleSubmit} ref={formRef}>
+        <h1>Create new chat</h1>
         <label htmlFor="username">Username:</label>
         <input
           type="text"
@@ -46,7 +46,9 @@ function CreateRoom() {
         <label htmlFor="password">Password:</label>
         <input type="password" id="password" ref={passwordRef} required />
         <button type="submit">Sign In</button>
-        <Link to="/register">Create an account</Link>
+        <Link to="/register" className="link">
+          Create an account
+        </Link>
       </form>
     </section>
   );

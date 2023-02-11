@@ -40,9 +40,9 @@ function JoinRoom() {
   }, []);
 
   return (
-    <section id="join-room">
-      <h1>Join existing chat</h1>
+    <section id="join-room" className="user-form">
       <form onSubmit={handleSubmit} ref={formRef}>
+        <h1>Join existing chat</h1>
         <label htmlFor="chat-id">Chat ID:</label>
         <input
           type="text"
@@ -64,7 +64,9 @@ function JoinRoom() {
         <label htmlFor="password1">Password:</label>
         <input type="password" id="password1" ref={passwordRef} required />
         <button type="submit">Sign In</button>
-        <Link to="/">Create an account</Link>
+        <Link to="/register" className="link">
+          Create an account
+        </Link>
       </form>
     </section>
   );

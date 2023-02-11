@@ -24,7 +24,7 @@ main {
   color: var(--color-1);
   margin: 0 auto;
   border-radius: 0.25rem;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  box-shadow: #48a4c30c 0px 6px 8px 0px;
   width: min(60rem, 100% - 4rem);
   min-height: 40rem;
   display: flex;
@@ -402,4 +402,49 @@ input:focus {
   font-size: large;
   color: var(--accent-color-1);
   border: 2px solid var(--accent-color-1);
+}
+
+/* CREATE ROOM COMPONENT */
+.user-form {
+  height: 40rem;
+  display: grid;
+  place-items: center;
+  justify-content: center;
+  align-items: center;
+  font-weight: 200;
+}
+
+.user-form > form {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.user-form h1 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  font-weight: bold;
+  color: var(--accent-color-1);
+}
+
+.user-form input {
+  text-indent: 0.75rem;
+}
+
+.user-form button {
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+  border: 0;
+  color: var(--bg-color-1);
+  background-color: var(--accent-color-1);
+}
+
+.link {
+  margin-top: 1.5rem;
+  color: var(--color-2);
+  text-align: center;
+}
+
+.link,
+.link:visited {
+  color: var(--color-2);
 }
