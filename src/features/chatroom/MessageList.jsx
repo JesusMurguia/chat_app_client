@@ -1,14 +1,19 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { selectCurrentRoom, selectCurrentUser } from "../auth/authSlice";
-import { updateActiveContact, setReadMessages } from "../chatroom/chatSlice";
+import {
+  updateActiveContact,
+  setReadMessages,
+  selectActiveContact,
+} from "../chatroom/chatSlice";
 import { useGetMessagesQuery } from "../message/messageApiSlice.js";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
+import Message from "../../components/Message";
 
 function MessageList() {
   const { idroom, username } = useParams();
-  const currentUser = useSelector(selectCurrentUser);
   const dispatch = useDispatch();
+  const bottomRef = useRef();
   const {
     data: messages,
     isLoading,
@@ -22,22 +27,26 @@ function MessageList() {
     dispatch(setReadMessages(username));
   }, []);
 
+  useEffect(() => {
+    bottomRef.current.scrollIntoView();
+  }, [messages]);
+
   if (isLoading) {
     content = <p>Loading...</p>;
   } else if (isSuccess) {
     content = (
-      <section>
-        <h1>Messages</h1>
-        <ul>
+      <div className="message-list-container">
+        <ul className="message-list">
           {messages.map((message, i) => {
             return (
               <li key={message.id}>
-                {`${message.sender}: ${message.content}`}
+                <Message message={message} />
               </li>
             );
           })}
+          <div ref={bottomRef}></div>
         </ul>
-      </section>
+      </div>
     );
   }
 

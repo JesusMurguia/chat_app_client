@@ -20,31 +20,33 @@ const SendMessage = (props) => {
   const dispatch = useDispatch();
 
   return (
-    <div className="send-message">
-      <FontAwesomeIcon icon={faMessage} className="search-bar-icon" />
-      <input
-        className="search-bar-input"
-        ref={messageRef}
-        type="text"
-        placeholder="write message.."
-      ></input>
-      <button
-        onClick={() => {
-          const message = {
-            id: nanoid(),
-            sender: user.username,
-            content: messageRef.current.value,
-            receiver: activeContact.username,
-            room,
-            status: "DELIVERED",
-          };
-          messageRef.current.value = "";
-          dispatch(submitMessage(message));
-        }}
-      >
-        Send
-      </button>
-    </div>
+    <form
+      className="message-form"
+      onSubmit={(e) => {
+        e.preventDefault();
+        const message = {
+          id: nanoid(),
+          sender: user.username,
+          content: messageRef.current.value,
+          receiver: activeContact.username,
+          room,
+          status: "DELIVERED",
+        };
+        messageRef.current.value = "";
+        dispatch(submitMessage(message));
+      }}
+    >
+      <div className="send-message">
+        <FontAwesomeIcon icon={faMessage} className="search-bar-icon" />
+        <input
+          className="search-bar-input"
+          ref={messageRef}
+          type="text"
+          placeholder="write message.."
+        ></input>
+        <button>Send</button>
+      </div>
+    </form>
   );
 };
 

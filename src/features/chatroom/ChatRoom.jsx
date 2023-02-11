@@ -13,8 +13,6 @@ import Users from "../../components/Users";
 import { Conversation } from "../../components/Conversation";
 
 const ChatRoom = () => {
-  const user = useSelector(selectCurrentUser);
-  const room = useSelector(selectCurrentRoom);
   const isConnected = useSelector(selectIsConnected);
 
   const dispatch = useDispatch();
@@ -29,7 +27,6 @@ const ChatRoom = () => {
     };
   }, []);
 
-  const welcome = user ? `Welcome ${user.username}!` : "Welcome!";
   const content = (
     <section id="chatroom">
       <UserInfo />
