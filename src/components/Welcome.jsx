@@ -4,8 +4,10 @@ const Welcome = () => {
   const navigate = useNavigate();
   return (
     <section id="welcome">
-      <button onClick={() => navigate("/create-room")}>Create Room</button>
-      <button onClick={() => navigate("/join-room")}>Join Room</button>
+      <div className="buttons">
+        <button onClick={() => navigate("/create-room")}>Create Room</button>
+        <button onClick={() => navigate("/join-room")}>Join Room</button>
+      </div>
     </section>
   );
 };

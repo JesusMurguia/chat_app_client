@@ -367,3 +367,39 @@ input:focus {
 ::-webkit-scrollbar {
   width: 0 !important;
 }
+
+/* WELCOME COMPONENT */
+#welcome {
+  height: 40rem;
+  display: grid;
+  justify-content: center;
+  place-items: center;
+}
+
+.buttons {
+  display: flex;
+  gap: 2rem;
+}
+
+.buttons > button {
+  width: 10rem;
+  height: 5rem;
+  background-color: var(--accent-color-1);
+  border: 0;
+  border-radius: 0.25rem;
+  font-size: large;
+  color: var(--bg-color-4);
+  border: 2px solid var(--bg-color-4);
+  cursor: pointer;
+}
+
+.buttons > button:hover {
+  width: 10rem;
+  height: 5rem;
+  background-color: var(--bg-color-4);
+  border: 0;
+  border-radius: 0.25rem;
+  font-size: large;
+  color: var(--accent-color-1);
+  border: 2px solid var(--accent-color-1);
+}
