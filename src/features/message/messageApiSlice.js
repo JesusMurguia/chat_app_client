@@ -4,7 +4,7 @@ export const messageApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getMessages: builder.query({
       query: (data) =>
-        `/api/chat/conversation/messages/${data.idroom}?receiver=${data.username}`,
+        `/api/chat/messages/${data.idroom}?receiver=${data.username}`,
       providesTags: ["Message"],
     }),
   }),
