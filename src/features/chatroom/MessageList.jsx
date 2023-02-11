@@ -28,7 +28,7 @@ function MessageList() {
   }, [username]);
 
   useEffect(() => {
-    bottomRef.current.scrollIntoView();
+    bottomRef?.current?.scrollIntoView();
   }, [messages]);
 
   if (isLoading) {

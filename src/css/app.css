@@ -448,3 +448,7 @@ input:focus {
 .link:visited {
   color: var(--color-2);
 }
+
+button {
+  cursor: pointer;
+}
