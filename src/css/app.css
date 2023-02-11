@@ -479,3 +479,7 @@ button {
 .side-bar p {
   color: var(--color-2);
 }
+
+main > p {
+  color: var(--accent-color-1);
+}
