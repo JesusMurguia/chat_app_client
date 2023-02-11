@@ -27,7 +27,7 @@ function Conversation() {
               id: nanoid(),
               sender: user.username,
               content: messageRef.current.value,
-              receiver: activeContact,
+              receiver: activeContact.username,
               room,
               status: "DELIVERED",
             };

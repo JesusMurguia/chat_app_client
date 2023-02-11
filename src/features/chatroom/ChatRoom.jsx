@@ -10,6 +10,7 @@ import {
 
 import { UserInfo } from "../../components/UserInfo";
 import Users from "../../components/Users";
+import Conversation from "../../components/Conversation";
 
 const ChatRoom = () => {
   const user = useSelector(selectCurrentUser);
@@ -33,16 +34,7 @@ const ChatRoom = () => {
     <section id="chatroom">
       <UserInfo />
       <Users />
-      <div className="conversation">
-        <div className="active-contact">contact user</div>
-        <div className="messages">messages</div>
-        <div className="send-message">
-          <label>
-            send message
-            <input />
-          </label>
-        </div>
-      </div>
+      <Conversation />
     </section>
   );
   return content;

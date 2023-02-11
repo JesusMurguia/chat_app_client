@@ -8,7 +8,7 @@ import useComponentVisible from "./useComponentVisible";
 export const UserInfo = () => {
   const user = useSelector(selectCurrentUser);
   const { ref, isComponentVisible, setIsComponentVisible } =
-    useComponentVisible(true);
+    useComponentVisible(false);
 
   const handleStatusSwitcher = () => {
     setIsComponentVisible(true);
