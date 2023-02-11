@@ -342,7 +342,7 @@ input:focus {
   color: var(--color-2);
   position: absolute;
   right: 0;
-  bottom: -52%;
+  bottom: -0.75rem;
   width: max-content;
 }
 
@@ -451,4 +451,31 @@ input:focus {
 
 button {
   cursor: pointer;
+}
+
+.side-bar {
+  display: grid;
+  justify-content: start;
+  width: 70%;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.side-bar > div {
+  display: grid;
+  gap: 1rem;
+}
+.side-bar h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--accent-color-1);
+}
+
+.side-bar h2 {
+  font-size: 1.5rem;
+  color: var(--color-1);
+}
+
+.side-bar p {
+  color: var(--color-2);
 }
