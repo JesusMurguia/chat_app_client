@@ -43,7 +43,7 @@ const UsersList = () => {
     content = <p>Loading...</p>;
   } else if (isSuccess && isSuccessC) {
     content = (
-      <section className="users-list">
+      <section>
         <div className="users-list-header">
           <div className="notification-count">{unreadMessages}</div>
           <h1>Contacts</h1>
