@@ -10,7 +10,7 @@ import {
 
 import { UserInfo } from "../../components/UserInfo";
 import Users from "../../components/Users";
-import Conversation from "../../components/Conversation";
+import { Conversation } from "../../components/Conversation";
 
 const ChatRoom = () => {
   const user = useSelector(selectCurrentUser);

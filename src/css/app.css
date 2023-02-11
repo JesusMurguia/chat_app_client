@@ -25,7 +25,7 @@ main {
   margin: 0 auto;
   border-radius: 0.25rem;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  width: min(70rem, 100% - 4rem);
+  width: min(60rem, 100% - 4rem);
   min-height: 40rem;
   display: flex;
   flex-direction: column;
@@ -40,6 +40,7 @@ form {
 
 #chatroom {
   display: grid;
+  grid-template-columns: 25% auto;
   width: 100%;
   min-height: 40rem;
   gap: 1rem;
@@ -63,7 +64,8 @@ form {
   overflow-x: hidden;
 }
 
-.conversation {
+.conversation,
+.side-bar {
   grid-area: "conversation";
   grid-row: 1 / 12;
   grid-column: 2 / 12;
@@ -117,7 +119,7 @@ form {
 }
 
 /* SEARCH BAR */
-.search-bar > input {
+input {
   background-color: var(--bg-color-4);
   border: none;
   border-radius: 1rem;
@@ -211,7 +213,7 @@ input:focus {
   position: relative;
   width: min-content;
 }
-.user-icon-wrapper::after {
+.status.user-icon-wrapper::after {
   position: absolute;
   width: 0.5rem;
   height: 0.5rem;
@@ -262,4 +264,42 @@ input:focus {
   color: var(--bg-color-3);
   cursor: default;
   pointer-events: none;
+}
+
+/* CONVERSATION COMPONENT */
+.conversation {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 10% 80% 10%;
+  justify-content: space-between;
+  align-items: start;
+  padding-inline: 1rem;
+}
+
+/* CONTACT INFO COMPONENT */
+.useless-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: end;
+}
+
+/* SEND MESSAGE COMPONENT */
+.send-message {
+  display: flex;
+  position: relative;
+  align-self: end;
+}
+
+.send-message > input {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.send-message > button {
+  background-color: var(--accent-color-1);
+  border: none;
+  border-bottom-right-radius: 1rem;
+  border-top-right-radius: 1rem;
+  padding-inline: 1rem;
+  cursor: pointer;
 }

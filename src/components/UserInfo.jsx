@@ -16,7 +16,7 @@ export const UserInfo = () => {
 
   return (
     <div className={`profile-info ${user.status}`}>
-      <div className="user-icon-wrapper">
+      <div className="user-icon-wrapper status">
         <FontAwesomeIcon icon={faUser} className="profile-info-icon " />
       </div>
       <div className="user-info">

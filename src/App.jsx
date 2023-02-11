@@ -4,7 +4,7 @@ import RequireAuth from "./features/auth/RequireAuth";
 import ChatRoom from "./features/chatroom/ChatRoom";
 import { selectCurrentRoom } from "./features/auth/authSlice";
 import { useSelector } from "react-redux";
-import Conversation from "./features/chatroom/Conversation";
+import { Conversation } from "./components/Conversation";
 import JoinRoom from "./features/chatroom/JoinRoom";
 import CreateRoom from "./features/chatroom/CreateRoom";
 import Welcome from "./components/Welcome";
