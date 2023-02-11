@@ -101,7 +101,7 @@ form {
   width: 2rem;
   height: 2rem;
   border-radius: 50%;
-  border: 2px solid var(--bg-color-5);
+  border: 1px solid var(--bg-color-5);
   cursor: pointer;
   justify-self: end;
 }
