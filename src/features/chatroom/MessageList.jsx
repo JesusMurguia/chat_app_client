@@ -25,7 +25,7 @@ function MessageList() {
 
   useEffect(() => {
     dispatch(setReadMessages(username));
-  }, []);
+  }, [username]);
 
   useEffect(() => {
     bottomRef.current.scrollIntoView();

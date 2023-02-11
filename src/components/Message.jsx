@@ -4,7 +4,6 @@ import { formatDistance } from "date-fns";
 
 const Message = ({ message }) => {
   const { username } = useParams();
-  console.log(message);
   return (
     <div
       className={`message ${
